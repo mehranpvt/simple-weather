@@ -1,0 +1,265 @@
+/* You can add global styles to this file, and also import other style files */
+@use "sass:math";
+
+$primary_color: rgba(92, 129, 119, 0.43);
+$accent_color: #ff774b;
+$gray_color: #F9FAFB;
+$blue_color: #0A345F;
+$font-size: 16px;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+:root {
+  font-size: $font-size;
+}
+@function rem($pixels) {
+  @return math.div($pixels, 16) * 1rem;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.primary_color {
+  color: $primary_color;
+}
+.accent_color {
+  color: $accent_color;
+}
+.primary_bgcolor {
+  background-color: $primary_color;
+}
+.accent_bgcolor {
+  background-color: $accent_color;
+}
+.gray_bgcolor {
+  background-color: $gray_color;
+}
+.blue_bgcolor {
+  background-color: $blue_color;
+}
+
+.font-normal {
+  font-style: normal;
+}
+.font-italic {
+  font-style: italic
+}
+.font-regular {
+  font-weight: normal;
+}
+.font-thin {
+  font-weight: 100;
+}
+.font-light {
+  font-weight: 300;
+}
+.font-regular {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-bold {
+  font-weight: 700;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.none-outlined {
+  outline: none;
+}
+.box-sizing {
+  box-sizing: border-box;
+}
+.box-shadow {
+  box-shadow: 0 0 4px 0 #c9c9c9;
+}
+.white-space-nowrap {
+  white-space: nowrap;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex {
+  flex: 1 1 auto;
+}
+.width-100vw {
+  width: 100vw;
+}
+.height-100vh {
+  height: 100vh;
+}
+.width-100pct {
+  width: 100%;
+}
+.width-50pct {
+  width: 50%;
+}
+.height-100pct {
+  height: 100%;
+}
+.rtl {
+  direction: rtl;
+}
+.currency {
+  font-variant-numeric: tabular-nums;
+}
+.border-radius {
+  border-radius: 4px;
+}
+
+
+@mixin text($color) {
+  background-color: $color;
+}
+
+$color: ('red', 'green');
+.class {
+  @include text(var(--color));
+}
+
+$paddingSizes: (1, 2, 4, 6, 8, 10, 12, 14, 16, 20, 24, 30, 32, 48, 64);
+@mixin dynamicUnit($dimensions, $range: 100) {
+  @each $dimension in $dimensions {
+    @each $i in $paddingSizes {
+      .#{$dimension}-#{$i} { #{$dimension}: rem($i)}
+    }
+  }
+}
+
+@include dynamicUnit((padding, padding-right, padding-left, padding-top, padding-bottom));
+@include dynamicUnit((margin, margin-right, margin-left, margin-top, margin-bottom));
+@include dynamicUnit((gap));
+
+/***************Position**********/
+$positions: ('absolute', 'relative', 'fixed', 'sticky', 'static');
+@each $name in $positions {
+  .position-#{$name} {
+    position: #{$name};
+  }
+}
+/***************Icons Size**********/
+$icons-size: (
+  x-large: #{rem(34)},
+  large: #{rem(28)},
+  medium: #{rem(22)},
+  small: #{rem(16)},
+  x-small: #{rem(13)}
+);
+@each $name, $value in $icons-size {
+  .icon-#{$name} {
+    font-size: #{$value};
+  }
+}
+/***************Font Size**********/
+
+$fonts: (
+  'size-62': 62,
+  'size-56': 56,
+  'size-50': 50,
+  'size-44': 44,
+  'size-40': 40,
+  'size-38': 38,
+  'size-32': 32,
+  'size-28': 28,
+  'size-24': 24,
+  'size-22': 22,
+  'size-20': 20,
+  'size-18': 18,
+  'size-16': 16,
+  'size-14': 14,
+  'size-12': 12,
+  'size-10': 10,
+);
+
+$colors: (
+  'side-nav': #001757,
+  'primary': #FF008C,
+);
+
+@each $name, $value in $fonts {
+  .font-#{$value} {
+    font-size: #{rem($value)};
+  }
+}
+@each $name, $value in $colors {
+  .color-#{$name} { color: #{$value} !important; }
+  .background-color-#{$name} { background-color: #{$value} !important; }
+}
+
+/***************Flex**********/
+
+$directions: ('row-reverse', 'column-reverse', 'column','row'); //default value should be in last
+$justifies: ('space-between', 'space-around', 'center', 'flex-end', 'flex-start');
+$aligns: ('stretch', 'baseline', 'flex-end', 'center', 'flex-start' );
+@each $direction in $directions {
+  .flex-#{$direction} {
+    display: flex;
+    flex-direction: #{$direction}
+  }
+  @each $justify in $justifies {
+    .flex-#{$direction}-#{$justify} {
+      display: flex;
+      flex-direction: #{$direction};
+      justify-content: #{$justify};
+    }
+    @each $align in $aligns {
+      .flex-#{$direction}-#{$justify}-#{$align} {
+        display: flex;
+        flex-direction: #{$direction};
+        justify-content: #{$justify};
+        align-items: #{$align};
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1500px) {
+  :root {
+    font-size: 14px;
+  }
+  @function em($pixels) {
+    @return math.div($pixels, 14) * 1rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    font-size: 13px;
+  }
+  @function em($pixels) {
+    @return math.div($pixels, 13) * 1rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    font-size: 12px;
+  }
+  @function em($pixels) {
+    @return math.div($pixels, 12) * 1rem;
+  }
+}

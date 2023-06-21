@@ -1,0 +1,67 @@
+:root {
+  --background-overlay: rgba(0, 0, 0, 0.2);
+}
+.weather-all {
+  font-size: 16px;
+  font-family: sans-serif;
+  z-index: 9;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  .weather {
+    width: 70%;
+    overflow: auto;
+    @media (max-width: 1280px) {
+      width: 75%;
+    }
+    @media (max-width: 1024px) {
+      width: 80%;
+    }
+    @media (max-width: 768px) {
+      width: 90%;
+    }
+    @media (max-width: 426px) {
+      width: 100%;
+    }
+    .search {
+      background-color: rgba(0, 0, 0, 0.75);
+      .search-input {
+          width: 25%;
+          min-width: 135px;
+          height: 30px;
+          border: 1px solid white;
+          background-color: transparent;
+          color: white;
+          outline: none;
+          &::placeholder {
+              color: white;
+              opacity: 1;
+            }
+      }
+      .deg {
+          background-color: white;
+          width: 75px;
+          min-width: 50px;
+          height: 30px;
+      }
+  }
+  .main-all {
+    background-color: rgba(0, 0, 0, 0.70);
+    color: white;
+    @media (max-width: 300px) {
+      flex-direction: column;
+    }
+    .details {
+      @media (max-width: 300px) {
+        margin-bottom: 32px;
+      }
+    }
+}
+  }
+  .overlay {
+    background-color: var(--background-overlay);
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
