@@ -1,7 +1,7 @@
 import './App.scss';
 import Details from './components/details/details';
-import Cold from './assets/images/cold.jpeg';
-import Hot from './assets/images/hot.jpeg';
+import Cold from '/cold.jpeg';
+import Hot from '/hot.jpeg';
 import { formattedWeatherData } from './weatherService';
 import { useEffect, useState } from 'react';
 
